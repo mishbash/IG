@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <utility>
+
+class InverterGraph {
+private:
+    int num_inputs;
+    std::vector<std::pair<int, bool>> adj_matrix;
+public:
+    InverterGraph(int inputs)
+            : num_inputs(inputs) { }
+
+    void setAdjMatrix(const std::vector<std::pair<int, bool>>& matrix) {
+        adj_matrix = matrix;
+    }
+
+    void getGraphScheme() const {
+        std::cout << "Inverter Graph: \n";
+        for(int i = 0; i < num_inputs; i++) {
+            std::cout << "Input " << i+1 << " - ";
+            if (adj_matrix[i].second == true) std::cout << "Inverter ";
+            std::cout << "Function Element " << adj_matrix[i].first << '\n';
+        }
+    }
+};
+
+// Использование:
+
+int main() {
+    InverterGraph ig(3);
+    std::vector<std::pair<int, bool>> matrix = {{1, true}, {2, false}, {3, true}};
+    ig.setAdjMatrix(matrix);
+    ig.getGraphScheme();
+
+    return 0;
+}
